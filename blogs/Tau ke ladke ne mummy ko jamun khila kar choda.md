@@ -1,0 +1,45 @@
+﻿TITLE: Tau ke ladke ne mummy ko jamun khila kar choda
+URL:..
+Mummy shuruaat se hi shehar mein rahi hui hai. Jab unki shaadi nahi hui thi, tab wo apne mummy-papa ke sath Delhi mein rehti thi, aur shaadi ke baad wo apne pati yani mere papa ke sath Mumbai mein rehne lagi.
+Shuruaat se shehar mein rehne ke kaaran meri mummy bahut hi zyada sexy aur sudaul shareer ki malkin hai. Shaadi ke baad unka shareer bhar na jaye, isliye wo exercise aur yoga karti hai. Unke chehre ki chamak aur shareer ki fitness dekh kar koi nahi bata sakta ki mummy 24-25 saal se zyada umar ki hongi.
+Mere papa shuruaat se gaon mein rahe hai. Par jab unki naukari lagi, to wo mere aur mummy ke sath Mumbai mein hi rehne lage. Gaon mein tau ji aur dadi-dada rehte hai.
+Tau ji ka ek bada ladka aur ek ladki hai. Yahan par ladki ki shaadi thi, to main aur mummy didi ki shaadi mein aaye hue the. Papa ke paas samay nahi tha, to wo nahi aa sake.
+Mummy jab se aayi hui thi, unhe gaon bahut hi acha lag raha tha. Wo kewal gaon hi ghoom rahi thi. Dadi mana kar rahi thi, ki tum is gaon ki bahu ho, is tarah mat ghooma-fira karo. Par mummy nahi maan rahi thi.
+Wo shehar mein shuruaat se hi bina parde ke rahi hui thi. To yahan bhi salwar suit pehan kar bina kisi ke darr-bhay ke ghooma karti thi, aur unhe ghumane mein sabse aage rehte the tau ji ke ladke hamare Saroj bhaiya.
+Saroj bhaiya ki umar 28 saal rahi hogi. Unki abhi shaadi nahi hui hai. Wo abhi bhi padhayi karte hai. Wo mummy ko jab se dekhe the, tab se unke peeche lattu hue ghoom rahe the.
+Mummy ko har jagah wahi ghumate the. Mummy ke sath hi rehte the, aur masti-mazaak karte. Meri mummy bhi unhe chhedhne ka koi bhi mauka nahi chhodhti thi, aur Saroj bhaiya to kisi bahane se bas mummy se chipak jana chaahte the. Mummy ke komal badan ko chhoo lena chaahte the, aur mummy bhi unki aankhon ki vasna ka zor dekar kaafi prafullit ho uthti thi.
+Saroj bhaiya aaj mummy ko jamun khilane ke liye kheton par le jaane waale the. Main bhi zid karke unke sath ho liya. Mummy to mujhe bahut mana ki, par main nahi maana aur unke sath hi aa gaya. Saroj bhaiya aate hi jamun ke ped par chadh gaye. Upar se jamun girane lage. Jamun neeche girte hi toot jata, jiski wajah se unka taste kharaab ho jata.
+Tab mummy apne dupatte se jamun rokna shuru kar di. Mummy ki chuchiyan upar se Saroj bhaiya ko saaf dikhayi de rahi thi, jiski wajah se wo jamun todna chhodh mummy ki chuchiyon ko dekhne lage.
+Mummy muskurane lagi aur boli: Saroj kya hua, jamun nahi giraoge? Ya mere is jamun ko dekhte rahoge?
+Mummy ye kah kar badi zor se hansi. Saroj bhaiya ko bhi samajh aa gaya ki mummy ne unki chori pakad li thi, aur wo bhi hans kar bole-
+Saroj bhaiya: Haa-haa, abhi girata hu.
+Fir Saroj bhaiya mummy ko khoob saare jamun khilaye aur badi pyari-pyari baaten ki un dono ne. Aankhon hi aankhon mein pata nahi kya ishara kiye mujhe to samajh mein nahi aa rahi thi.
+Un dono mein zaroor kuch na kuch khichdi pak rahi thi. Mummy mujhse nazrein bachate hue unse nazron hi nazron mein kuch keh rahi thi, kheton ki taraf jaane ke liye. Main samajh nahi paa raha tha. Saroj bhaiya jaan-boojh kar ek-aadh jamun mummy ki chuchiyon par maar dete, aur mummy hass padti.
+Thode hi der mein mausam badal gaya, aur kahin se kaale-kaale badal gir gaye. Tab mummy ne mujhse kaha-
+Mummy: Beta tum ghar chale jao, bahut tez barish hone wali hai.
+Par mera mann nahi tha jaane ko. Tab mummy ne apne dupatte se kuch jamun mujhe diye, aur boli ki chale jao nahi to bheeg jaoge. Main wahan se jamun lekar nikal to gaya, par ghar nahi gaya.
+Main wahin chhup gaya. Thodi hi der baad bhaiya ped se utre, aur mummy ke sath kheton ki taraf jaane lage. Dono hanste hue bade pyar se jaa rahe the. Adhar kheton mein khoob sara baajra laga hua tha.
+Main bhi chhupte hue unke peeche baajre ki kheton mein chala gaya. Mummy ghane baajre ke kheton mein chali gayi. Wo dono andar ek khet ke kyaari par baithe aur khoob pyari-pyari baatein karke hans rahe the. Dono hanste hue ek-doosre ke shareer ko touch kar rahe the.
+Mummy ne fir bhaiya ki aankhon main dekha, aur bhaiya bhi unki aankhon mein dekhte hue unke kareeb aa rahe the. Fir mummy ne bhaiya ke hontho par apni ungli rakh di, aur bade hi pyar se boli-
+Mummy: Koi aayega to nahi?
+Bhaiya ne mummy ke ungliyon ko apne hatho mein liya, aur pyar se sehlate hue bole: Aap nishchint raho chachi, idhar kheton mein hum dono ke alawa aur koi nahi hai.
+Aur bhaiya mummy ko wahin litaate hue unke upar chadh gaye, aur mummy ke gaalon aur hontho ko choomne lage. Main ye dekh kar hairan ho gaya. Bhaiya lagataar mummy ke hontho ko choos rahe the, aur mummy bhi unke hontho ko chooste hue unke baalon aur peeth ko sehla rahi thi.
+Mummy apne pair ko unke pair mein fassa kar bade maze se unki jaanghon par apni jaangh ragad rahi thi. Unki payal se halki-halki awaaz aa rahi thi, aur tabhi badal bhi garajna shuru kar diya. Un dono ka romance chalta hi jaa raha tha.
+Fir bhaiya uthe, aur mummy ke suit ko nikaal diya. Mummy ke gore badan par ab sirf bra aur neeche salwar thi. Fir bhaiya ne mummy ki salwar ko bhi khola, aur nikaal diya. Uske baad apne t-shirt ko nikaale aur pant ko bhi utaar diya. Ab dono bra panty aur bhaiya underwear mein the. Dono ek-doosre ke shareer ko ragadna shuru kar diye, aur ek-doosre ke shareer ko choomne lage.
+Mummy ka komal badan jo shehar mein bahut hi naazon se rakha hua tha, ab kisi gaon ke desi gatheele shareer ke neeche ragad khaa raha tha. Unka komal shareer laal hue jaa raha tha.
+Dono ek-doosre ke shareer ko choom rahe the. Mummy unke shareer ke har hisse par apne hath fira rahi thi, aur Saroj bhaiya mummy ki bra ko nikaal kar unke dono kabutaron ko azaad kar diye. Fir apne muh mein bhar kar choosne lage. Mummy unke baalon ko sehla kar bade pyar se apni chuchiyon ko chuswa rahi thi.
+Fir Saroj bhaiya ne mummy ki panty ko nikala, aur apne underwear ko bhi. Ab dono bilkul nange ho gaye. Tabhi tez barish honi shuru ho gayi, aur dono ke badan barish ki boondon se chamakne lage.
+Mummy ka badan gazab ka chamak raha tha. Saroj bhaiya mummy ke har hisse ko choom rahe the. Barish ki boonde mummy ke badan ko geela kar rahi thi, aur Saroj bhaiya har boond ko piye jaa rahe the.
+Fir bhaiya ne mummy ki chut ko failaya, aur apni jeebh laga kar usme se beh rahi rass dhaara ko peena shuru kar diya. Mummy apni chut mein bhaiya ki garam jeebh paa kar bahut hi zyada uttejit ho gayi, aur unke sar ko apni chut mein dabane lagi.
+Mummy bahut hi kamuk awaaz nikaal rahi thi. Upar se ye tez barish dono ke badan ko geela kar rahi thi. Fir mummy ko Saroj bhaiya neeche litaye, aur unke upar chadh gaye, aur apne lund ko unki chut par ragadna shuru kar diye.
+Mummy ki komal chut mein jaise hi bhaiya apne kathor lund ko ragadane shuru kiye, mummy ki poore tann-badan mein ek gazab ka current daud gaya. Unhone bhaiya ko apne seene se chipka liya. Saroj bhaiya ne neeche hath le jaa kar apne lund ko seedha mummy ki chut par lagaya, aur halka-halka dhakka de kar unki chut mein ghusana shuru kar diye.
+Mummy uttejit ho kar bhaiya ke kaan ko kaatne lagi. Bhaiya is tarah se aur uttejit hue, aur unki chut mein ek tez dhakke ke sath poore lund ko utaar diye. Baadlon ke beech ek tez garjan hui, aur sath hi mummy ki ek zor ki aaahhh nikli.
+Kuch der sab kuch thehar sa gaya. Mummy haanfne lagi, aur unki aankhen band thi, aur bhaiya ko apni baahon mein jakad li thi. Fir dheere-dheere bhaiya ne kamar hilana shuru kiya, aur mummy ke muh se fir se madhak siskari uthna shuru hua. Ab bhaiya ki kamar ki raftaar badhne lagi, aur mummy ki chut mein zor-zor se lund andar-baahar hone laga.
+Tez barish mein mummy ki chudai bahut hi raftaar se ho rahi thi. Mummy neeche let kar bhaiya ke gaalon ko aur hontho ko choom rahi thi, aur bhaiya apni kamar ki raftaar badha kar mummy ki chut ko chod rahe the.
+Fir bhaiya ne mummy ko ghodi banaya, aur peeche se apne lund ko unki chut mein ghusa kar unke baalon ko pakad kar gardan ko choomte hue chodna shuru kar diye. Neeche latak rahi dono chuchiyon ko hatheliyon mein bhar kar zor-zor se unki chut mein dhakke maarne lage.
+Bhaiya ke is tarah ki chudai se mummy bahut hi zyada aanandit dikhayi pad rahi thi. Unke muh se bahut hi zyada madak siskariyan foot rahi thi. Thodi hi der aise chudai karne ke baad bhaiya mummy ke upar hi shithil pad gaye, aur dono ek-doosre ko choomne lage.
+Barish ki raftaar abhi bhi nahi tham rahi thi. Par bhaiya ka lund ab thak chuka tha. Fir mummy uthi, aur unke lund ko muh mein le kar fir se choosna shuru kar di. Thodi der choosne ke baad bhaiya ka lund fir se taw mein aa gaya. Is baar bhaiya neeche lete, aur mummy ko apne lund par bithaya. Fir dobara zor-zor se chudai shuru ho gayi.
+Lagbhag 1 ghante tak fir se mummy ko bhaiya chode, aur uske baad barish jab thodi kam hui, to wo dono apne kapde pehan kar bheege badan ke sath ghar ki aur wapas chal diye. Main wahan se bhaag kar jaldi hi ghar aa gaya taaki un logon ko shak na ho.
+Uske baad didi ki shaadi tak un logon ki kahin na kahin chudai hoti hi rahi, aur fir main aur mummy wapas shehar aa gaye.
+The end.\r\n
+
