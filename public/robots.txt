@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /api/
+Disallow: /blogs/
+Allow: /
+
+# PHAZR is a transitory discovery tool. 
+# All rights remain with the original creators on Tumblr.

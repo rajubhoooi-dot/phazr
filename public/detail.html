@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>PHAZR | Reading Story...</title>
+    
+    <meta name="description" content="Read the full story on PHAZR Archives.">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#ff69b4">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        :root { --pink: #ff69b4; --bg: #001935; --card: #00254d; }
+        body { font-family: 'Noto Sans', sans-serif; background: var(--bg); color: #fff; margin: 0; padding-bottom: 80px; }
+        
+        header { 
+            padding: 20px; display: flex; align-items: center; 
+            background: rgba(0,25,53,0.9); position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .back-link { color: var(--pink); text-decoration: none; font-weight: 900; display: flex; align-items: center; gap: 8px; }
+
+        .content-wrap { max-width: 700px; margin: 0 auto; padding: 20px; }
+        #story-content { line-height: 1.8; font-size: 1.1rem; color: #e1e8ed; }
+        
+        /* Markdown Styling */
+        #story-content img { width: 100%; border-radius: 15px; margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #story-content h1, #story-content h2 { color: var(--pink); margin-top: 30px; font-weight: 900; }
+        #story-content p { margin-bottom: 20px; }
+        #story-content blockquote { border-left: 4px solid var(--pink); padding-left: 20px; color: #88a0b9; font-style: italic; }
+
+        .loader { text-align: center; padding: 100px 0; color: var(--pink); font-weight: 900; letter-spacing: 2px; }
+        .error-box { text-align: center; padding: 50px; background: rgba(255,0,0,0.1); border-radius: 20px; border: 1px solid red; margin-top: 50px; }
+
+        footer {
+            position: fixed; bottom: 0; width: 100%; height: 70px;
+            background: var(--bg); display: flex; align-items: center;
+            justify-content: space-around; border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-btn { font-size: 24px; color: var(--pink); background: none; border: none; cursor: pointer; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="bloglist.html" class="back-link"><i class="fas fa-chevron-left"></i> BACK TO ARCHIVE</a>
+    </header>
+
+    <div class="content-wrap">
+        <div id="loader" class="loader">DECRYPTING STORY...</div>
+        <div id="error-display" style="display: none;" class="error-box">
+            <h3>FILE NOT FOUND</h3>
+            <p>The story archive could not be synced. Check if the file exists in /blogs/.</p>
+            <a href="bloglist.html" style="color: white;">Return to Directory</a>
+        </div>
+        <main id="story-content"></main>
+    </div>
+
+    <footer>
+        <a href="index.html" class="footer-btn"><i class="fas fa-home"></i></a>
+        <button class="footer-btn" onclick="shareStory()"><i class="fas fa-share-alt"></i></button>
+        <a href="bloglist.html" class="footer-btn"><i class="fas fa-book"></i></a>
+    </footer>
+
+    <script>
+        // Get story ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const storyId = urlParams.get('id');
+
+        async function loadStory() {
+            if (!storyId) {
+                showError("No ID provided");
+                return;
+            }
+
+            try {
+                const response = await fetch(`blogs/${storyId}`);
+                if (!response.ok) throw new Error("File not found");
+                
+                const markdown = await response.text();
+                
+                // Remove Markdown Frontmatter if it exists (the stuff between ---)
+                const cleanMarkdown = markdown.split('---').pop().trim();
+                
+                // Convert Markdown to HTML
+                document.getElementById('story-content').innerHTML = marked.parse(cleanMarkdown);
+                document.getElementById('loader').style.display = 'none';
+                
+                // Update Page Title
+                const title = storyId.replace(/\.md$/i, '').replace(/^\d+[_ -]*/, '').trim();
+                document.title = `${title} | PHAZR`;
+                
+            } catch (err) {
+                showError(err.message);
+            }
+        }
+
+        function showError(msg) {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('error-display').style.display = 'block';
+            console.error("PHAZR ERROR:", msg);
+        }
+
+        function shareStory() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                });
+            }
+        }
+
+        window.onload = loadStory;
+    </script>
+</body>
+</html>

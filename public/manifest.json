@@ -1,0 +1,15 @@
+{
+  "name": "PHAZR",
+  "short_name": "PHAZR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#001935",
+  "theme_color": "#ff69b4",
+  "icons": [
+    {
+      "src": "https://placehold.co/512x512/001935/ff69b4?text=P",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

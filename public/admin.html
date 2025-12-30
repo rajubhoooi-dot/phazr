@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHAZR | Admin Panel</title>
+    <style>
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #001935; color: white; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; margin: 0; 
+        }
+        .card { 
+            background: #00254d; padding: 40px; border-radius: 25px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+            width: 90%; max-width: 350px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        h2 { margin: 0 0 10px 0; color: #4cffac; letter-spacing: 3px; font-size: 24px; }
+        p { color: #88a0b9; font-size: 13px; margin-bottom: 25px; }
+        
+        input { 
+            width: 100%; padding: 15px; margin-bottom: 20px; 
+            border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); 
+            background: rgba(0,0,0,0.3); color: white; 
+            box-sizing: border-box; font-size: 16px; outline: none;
+        }
+        input:focus { border-color: #4cffac; }
+
+        button { 
+            width: 100%; padding: 15px; border-radius: 12px; border: none; 
+            background: #4cffac; color: #001935; 
+            font-weight: 900; font-size: 15px; cursor: pointer; 
+            transition: transform 0.2s, background 0.2s; 
+        }
+        button:active { transform: scale(0.96); }
+        
+        #status { margin-top: 20px; font-size: 14px; font-weight: bold; min-height: 20px; }
+        .back-link { 
+            display: inline-block; margin-top: 30px; 
+            color: #556a81; text-decoration: none; font-size: 12px; 
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>ADMIN</h2>
+        <p>Add a new blog to your live stream</p>
+        
+        <input type="text" id="blogInput" placeholder="Tumblr Username" spellcheck="false">
+        <button onclick="addBlog()">SYNC NEW SOURCE</button>
+        
+        <div id="status"></div>
+
+        <a href="index.html" class="back-link">← Return to Feed</a>
+    </div>
+
+    <script>
+        async function addBlog() {
+            const input = document.getElementById('blogInput');
+            const status = document.getElementById('status');
+            const name = input.value.trim();
+
+            if (!name) return;
+
+            status.style.color = "#88a0b9";
+            status.innerText = "Updating .env.local...";
+
+            try {
+                const response = await fetch('/api/admin/add-blog', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ blogName: name })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    status.style.color = "#4cffac";
+                    status.innerText = result.message;
+                    input.value = "";
+                } else {
+                    status.style.color = "#ff4c4c";
+                    status.innerText = result.message || "Error adding blog.";
+                }
+            } catch (err) {
+                status.style.color = "#ff4c4c";
+                status.innerText = "Server connection failed.";
+            }
+        }
+    </script>
+</body>
+</html>

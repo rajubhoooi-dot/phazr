@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHAZR | Story Archives</title>
+    <style>
+        :root { --pink: #ff69b4; --bg: #001935; }
+        body { font-family: sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 20px; padding-bottom:100px; }
+        .search-box { width:100%; padding:15px; border-radius:50px; background:#000c1a; border:1px solid var(--pink); color:#fff; margin-bottom:20px; box-sizing:border-box; outline:none; }
+        .story-card { background:#00254d; padding:20px; border-radius:15px; margin-bottom:15px; display:block; text-decoration:none; color:#fff; border-left: 5px solid var(--pink); transition: 0.2s; }
+        .story-card:hover { transform: translateX(5px); background:#003366; }
+        .pagination { display:flex; justify-content:center; gap:8px; margin-top:20px; flex-wrap: wrap; }
+        .page-btn { padding:10px 15px; border:1px solid var(--pink); color:var(--pink); background:none; cursor:pointer; border-radius:50px; font-weight:bold; }
+        .page-btn.active { background:var(--pink); color:#fff; }
+        .nav-footer { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--pink); color:#fff; padding:12px 30px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body>
+    <h1 style="color:var(--pink); font-size:28px; font-weight:900; letter-spacing:1px;">ARCHIVES</h1>
+    <input type="text" id="searchInput" class="search-box" placeholder="Search stories..." oninput="searchStories()">
+    
+    <div id="story-list"></div>
+    <div id="pagination" class="pagination"></div>
+
+    <a href="index.html" class="nav-footer">BACK TO STREAM</a>
+
+    <script>
+        const POSTS_PER_PAGE = 8;
+        let allStories = [];
+        let filteredStories = [];
+        let currentPage = 1;
+
+        async function load() {
+            const res = await fetch('blogs/index.json');
+            allStories = await res.json();
+            filteredStories = allStories;
+            render(1);
+        }
+
+        function render(page) {
+            currentPage = page;
+            const start = (page - 1) * POSTS_PER_PAGE;
+            const slice = filteredStories.slice(start, start + POSTS_PER_PAGE);
+            
+            document.getElementById('story-list').innerHTML = slice.map(f => {
+                const title = f.replace('.md','').replace(/_/g,' ');
+                return `<a href="detail.html?id=${encodeURIComponent(f)}" class="story-card">
+                    <div style="font-weight:bold; font-size:18px;">${title.toUpperCase()}</div>
+                    <div style="font-size:12px; color:#88a0b9; margin-top:5px;">PHAZR ARCHIVE UNIT</div>
+                </a>`;
+            }).join('');
+
+            const totalPages = Math.ceil(filteredStories.length / POSTS_PER_PAGE);
+            let phtml = '';
+            for(let i=1; i<=totalPages; i++) {
+                phtml += `<button class="page-btn ${i===page?'active':''}" onclick="render(${i})">${i}</button>`;
+            }
+            document.getElementById('pagination').innerHTML = phtml;
+            window.scrollTo(0,0);
+        }
+
+        function searchStories() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            filteredStories = allStories.filter(s => s.toLowerCase().includes(term));
+            render(1);
+        }
+
+        load();
+    </script>
+</body>
+</html>
