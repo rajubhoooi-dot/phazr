@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>PHAZR | Live Feed</title>
+    <style>
+        :root {
+            --live-red: #ff4c4c;
+            --live-green: #4cffac;
+            --bg: #001935;
+            --text: #fff;
+            --border: rgba(255,255,255,0.1);
+            --sidebar-w: 280px;
+        }
+
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            background: var(--bg); color: var(--text);
+            margin: 0; padding: 70px 0 80px 0;
+            overscroll-behavior-y: contain;
+        }
+
+        /* --- Sidebar Styles --- */
+        #sidebar {
+            position: fixed; top: 0; left: calc(-1 * var(--sidebar-w));
+            width: var(--sidebar-w); height: 100%;
+            background: #001226; z-index: 2000;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-right: 1px solid var(--border);
+            display: flex; flex-direction: column;
+        }
+        #sidebar.open { left: 0; box-shadow: 10px 0 50px rgba(0,0,0,0.8); }
+        .sidebar-header { padding: 20px; font-weight: 900; font-size: 18px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+        .blog-list-scroll { flex-grow: 1; overflow-y: auto; padding: 10px 0; }
+        .blog-item { padding: 12px 20px; font-size: 14px; cursor: pointer; color: #aaa; border-left: 3px solid transparent; transition: all 0.2s; }
+        .blog-item.active { border-left-color: var(--live-green); color: var(--live-green); background: rgba(76, 255, 172, 0.05); }
+
+        .sidebar-footer {
+            padding: 20px; background: #000d1a; border-top: 1px solid var(--border);
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .footer-link {
+            color: #666; text-decoration: none; font-size: 11px;
+            text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s;
+        }
+        .footer-link:hover { color: var(--live-red); }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1500; display: none; }
+        .overlay.show { display: block; }
+
+        header {
+            position: fixed; top: 0; width: 100%; height: 60px; background: var(--bg);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; border-bottom: 1px solid var(--border); z-index: 1000; box-sizing: border-box;
+        }
+        .logo { font-size: 22px; font-weight: 900; letter-spacing: 2px; }
+        .live-indicator { display: flex; align-items: center; gap: 8px; }
+        .pulse-dot { height: 10px; width: 10px; background-color: var(--live-red); border-radius: 50%; animation: pulse-animation 1.5s infinite; }
+        @keyframes pulse-animation { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 76, 76, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 76, 76, 0); } }
+        #user-count { font-size: 13px; font-weight: 800; color: var(--live-red); }
+
+        /* --- Post Feed & Actions --- */
+        #feed { max-width: 550px; margin: 0 auto; padding: 0 10px; }
+        .post { background: #fff; color: #000; border-radius: 15px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+        .post-header { display: flex; align-items: center; padding: 12px; background: #f9f9f9; border-bottom: 1px solid #eee; }
+        .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--bg); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; }
+        .media-wrapper { position: relative; background: #000; min-height: 250px; display: flex; align-items: center; justify-content: center; }
+        .media-wrapper img, .media-wrapper video { width: 100%; display: block; height: auto; }
+        .big-heart { position: absolute; font-size: 80px; color: white; opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0); top: 50%; left: 50%; transition: all 0.3s; z-index: 10; }
+        .big-heart.animate { opacity: 0.9; transform: translate(-50%, -50%) scale(1.2); }
+        
+        .post-content { padding: 15px; font-size: 15px; line-height: 1.4; }
+        .post-actions { display: flex; align-items: center; padding: 10px 0; border-top: 1px solid #f0f0f0; margin-top: 10px; gap: 15px; }
+        .action-icon { background: none; border: none; padding: 5px; cursor: pointer; transition: transform 0.1s; display: flex; align-items: center; }
+        .action-icon:active { transform: scale(0.9); }
+        .like-btn { font-size: 24px; filter: grayscale(1); }
+        .like-btn.liked { filter: grayscale(0); transform: scale(1.1); }
+        .share-btn { font-size: 22px; color: #333; }
+        .like-count { font-weight: 800; font-size: 14px; color: #333; margin-left: -5px; }
+        .username { font-weight: 800; color: var(--bg); text-transform: lowercase; }
+        .caption-fix { text-align: center; margin-top: 15px; font-weight: bold; color: var(--bg); font-size: 14px; }
+
+        footer { position: fixed; bottom: 0; width: 100%; height: 70px; background: var(--bg); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-top: 1px solid var(--border); z-index: 1000; box-sizing: border-box; }
+        .heart-list-btn { background: none; border: none; color: var(--live-red); font-size: 28px; cursor: pointer; }
+        .search-pill { flex-grow: 1; margin: 0 15px; background: rgba(255,255,255,0.15); border-radius: 25px; padding: 10px 20px; }
+        .search-pill input { background: none; border: none; color: #fff; width: 100%; outline: none; }
+        .menu-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+        .loader { text-align: center; margin-top: 100px; color: #888; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <div class="sidebar-header"><span>BLOG SOURCE</span><span onclick="toggleMenu()">✕</span></div>
+        <div class="blog-list-scroll" id="sidebar-list">
+            <div class="blog-item active" onclick="filterBlog('')">All Stories</div>
+        </div>
+        <div class="sidebar-footer">
+            <a href="about.html" class="footer-link">About</a>
+            <a href="policy.html" class="footer-link">Policy</a>
+            <a href="legal.html" class="footer-link">Legal</a>
+            <a href="report-abuse.html" class="footer-link">Report</a>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <header>
+        <div class="logo">PHAZR</div>
+        <div class="live-indicator"><span class="pulse-dot"></span><span id="user-count">12,447</span></div>
+    </header>
+
+    <div id="feed"><div class="loader" id="loader">CONNECTING TO ROMANTIC STREAM...</div></div>
+
+    <footer>
+        <button class="heart-list-btn" onclick="window.open('bloglist.html', '_blank')">♥️</button>
+        <div class="search-pill"><input type="text" placeholder="romantic story at bottom ♥️!!" id="searchInput"></div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    </footer>
+
+    <script>
+        let globalPosts = [];
+        let viewers = 12447;
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('show');
+        }
+
+        async function loadSidebar() {
+            try {
+                const response = await fetch('/api/blogs');
+                const blogs = await response.json();
+                const list = document.getElementById('sidebar-list');
+                blogs.forEach(blog => {
+                    const div = document.createElement('div');
+                    div.className = 'blog-item';
+                    div.innerText = blog;
+                    div.onclick = () => filterBlog(blog, div);
+                    list.appendChild(div);
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        function filterBlog(blogName, element) {
+            document.querySelectorAll('.blog-item').forEach(el => el.classList.remove('active'));
+            if(element) element.classList.add('active'); else document.querySelector('.blog-item').classList.add('active');
+            const term = blogName.toLowerCase();
+            const feed = document.getElementById('feed');
+            const filtered = term === "" ? globalPosts : globalPosts.filter(p => p.blog_name.toLowerCase() === term);
+            feed.innerHTML = '';
+            filtered.forEach(post => {
+                const div = document.createElement('div');
+                div.innerHTML = createPostCard(post);
+                feed.appendChild(div);
+                div.querySelectorAll('.feed-video').forEach(v => videoObserver.observe(v));
+            });
+            toggleMenu();
+        }
+
+        function createPostCard(post) {
+            const randomLikes = Math.floor(Math.random() * 45000) + 1200;
+            const tumblrUrl = post.post_url || "#"; 
+            const phazrUrl = window.location.origin;
+
+            return `
+            <div class="post">
+                <div class="post-header"><div class="avatar">P</div><span class="username">@phazr</span></div>
+                <div class="post-content">
+                    ${post.trail ? post.trail.map(t => `<div class="reblog-trail"><span class="username">@phazr</span>${renderContent(t.content)}</div>`).join('') : ''}
+                    <div class="original-content">${renderContent(post.content)}</div>
+                    <div class="post-actions">
+                        <button class="action-icon like-btn" onclick="toggleLike(this)">❤️</button>
+                        <span class="like-count">${randomLikes.toLocaleString()}</span>
+                        
+                        <button class="action-icon share-btn" onclick="openShareMenu('${phazrUrl}', '${tumblrUrl}')">
+                           <span style="transform: rotate(-15deg); display: inline-block;">✈️</span>
+                        </button>
+                    </div>
+                    <div class="caption-fix">romantic story at bottom ♥️!!</div>
+                </div>
+            </div>`;
+        }
+
+async function openShareMenu(phazrLink, tumblrLink) {
+    // We add "REF-" before the link to ensure it's treated as plain text
+    const nonClickableTumblr = "REF-" + tumblrLink.replace('https://', '');
+    
+    // We switch phazrLink to your live Render URL if it detects localhost
+    const liveLink = phazrLink.includes('localhost') ? 'https://phaz.onrender.com' : phazrLink;
+
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: 'PHAZR | Live Feed',
+                // PHAZR link is placed first
+                text: `Check this out on PHAZR! ❤️\n${liveLink}\n\nOriginal Source: ${nonClickableTumblr}`,
+            });
+        } catch (e) {
+            console.log("Share skipped");
+        }
+    } else {
+        const fallbackText = `Check this out on PHAZR! ❤️\n${liveLink}\n\nOriginal Source: ${nonClickableTumblr}`;
+        navigator.clipboard.writeText(fallbackText);
+        alert("Link copied! ❤️");
+    }
+}
+
+
+        function toggleLike(btn) {
+            const countLabel = btn.nextElementSibling;
+            btn.classList.toggle('liked');
+            let cur = parseInt(countLabel.innerText.replace(/,/g, ''));
+            countLabel.innerText = (btn.classList.contains('liked') ? cur + 1 : cur - 1).toLocaleString();
+        }
+
+        function handleDoubleTap(element) {
+            const heart = element.querySelector('.big-heart');
+            const postActions = element.closest('.post').querySelector('.like-btn');
+            heart.classList.add('animate');
+            setTimeout(() => heart.classList.remove('animate'), 800);
+            if (!postActions.classList.contains('liked')) toggleLike(postActions);
+        }
+
+        function renderContent(blocks) {
+            if (!blocks) return '';
+            return blocks.map(block => {
+                if (block.type === 'text') return `<p style="font-style: italic; color: #777; font-size: 13px;">romantic story at bottom ♥️!!</p>`;
+                if (block.type === 'image' && block.media?.[0]) {
+                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><img src="${block.media[0].url}" loading="lazy"><div class="big-heart">❤️</div></div>`;
+                }
+                if (block.type === 'video') {
+                    const vUrl = block.media?.[0]?.url || block.url;
+                    if (vUrl) return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><video loop muted playsinline src="${vUrl}" class="feed-video" preload="none"></video><div class="big-heart">❤️</div></div>`;
+                }
+                return '';
+            }).join('');
+        }
+
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.play().catch(()=>{});
+                else entry.target.pause();
+            });
+        }, { threshold: 0.5 });
+
+        function startLiveStream() {
+            const feed = document.getElementById('feed');
+            const loader = document.getElementById('loader');
+            const eventSource = new EventSource('/api/stream-posts');
+            eventSource.onmessage = (event) => {
+                const posts = JSON.parse(event.data);
+                if (loader) loader.style.display = 'none';
+                globalPosts = [...globalPosts, ...posts];
+                posts.forEach(post => {
+                    const div = document.createElement('div');
+                    div.innerHTML = createPostCard(post);
+                    feed.appendChild(div);
+                    div.querySelectorAll('.feed-video').forEach(v => videoObserver.observe(v));
+                });
+            };
+        }
+
+        window.onload = () => { loadSidebar(); startLiveStream(); };
+    </script>
+</body>
+</html>
