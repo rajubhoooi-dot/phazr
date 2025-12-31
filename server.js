@@ -1,6 +1,7 @@
 require('dotenv').config({ path: __dirname + '/.env.local' });
 const express = require('express');
 const tumblr = require('tumblr.js');
+const path = require('path'); // ADDE
 const app = express();
 
 const Log = {
