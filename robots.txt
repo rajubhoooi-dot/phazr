@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://phazr.netlify.app/sitemap.xml
