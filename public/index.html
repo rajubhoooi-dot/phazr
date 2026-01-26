@@ -2,22 +2,40 @@
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0G140CJ4BJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0G140CJ4BJ');
-</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0G140CJ4BJ');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="p:domain_verify" content="a81f071c456d451adf4645c12829f8ec"/>
-    <title>PHAZR | Live Feed</title>
     
-    <meta property="og:title" content="PHAZR | Romantic Stories">
-    <meta property="og:description" content="Read beautiful romantic stories live on PHAZR.">
-    <meta property="og:image" content="https://phazr.onrender.com/logo.png">
+    <!-- SEO Meta Tags - UPDATED -->
+    <title>PHAZR | Romantic Stories Live Feed - Read & Share Love Stories</title>
+    <meta name="description" content="Discover and share beautiful romantic stories on PHAZR. Join 12,000+ readers enjoying heartfelt love stories, emotional narratives, and touching tales updated live daily.">
+    <meta name="keywords" content="romantic stories, love stories, romance fiction, heartfelt tales, emotional stories, relationship stories, dating stories, love letters, romantic writing, story community">
+    <meta name="author" content="PHAZR">
+    <link rel="canonical" href="https://phazr.netlify.app/">
+    
+    <!-- Open Graph / Social Media - UPDATED -->
+    <meta property="og:title" content="PHAZR | Romantic Stories Live Feed">
+    <meta property="og:description" content="Read beautiful romantic stories live on PHAZR. Join our community of story lovers and discover heartfelt tales daily.">
+    <meta property="og:image" content="https://phazr.netlify.app/logo.png">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://phazr.netlify.app/">
+    <meta property="og:site_name" content="PHAZR">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PHAZR | Romantic Stories Live Feed">
+    <meta name="twitter:description" content="Read beautiful romantic stories live on PHAZR">
+    <meta name="twitter:image" content="https://phazr.netlify.app/logo.png">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#001935">
 
     <style>
         :root {
@@ -54,6 +72,15 @@
         .footer-link { color: #666; text-decoration: none; font-size: 11px; text-transform: uppercase; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1500; display: none; }
         .overlay.show { display: block; }
+
+        /* SEO Content Section - HIDDEN BUT CRAWLABLE */
+        .seo-content {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
 
         /* --- Header --- */
         header {
@@ -94,6 +121,24 @@
     </style>
 </head>
 <body>
+
+    <!-- SEO CONTENT - Hidden but crawlable -->
+    <div class="seo-content">
+        <h1>PHAZR - Read and Share Romantic Stories Live</h1>
+        <p>Welcome to PHAZR, the premier destination for romantic storytelling. Discover thousands of heartfelt love stories, emotional narratives, and touching tales from our community of passionate writers and readers.</p>
+        
+        <h2>What is PHAZR?</h2>
+        <p>PHAZR is a live feed platform where you can read beautiful romantic stories updated in real-time. Our community of over 12,000 readers and writers share their most heartfelt experiences, fictional love stories, and emotional journeys.</p>
+        
+        <h2>Features</h2>
+        <p>Browse romantic stories from multiple sources, like and save your favorite tales, share stories with friends, discover new writers daily, and join a community that celebrates love and romance.</p>
+        
+        <h2>Popular Story Categories</h2>
+        <p>Romantic fiction, real love stories, heartbreak and healing, first love experiences, long distance relationships, wedding stories, dating adventures, and emotional confessions.</p>
+        
+        <h2>Join Our Community</h2>
+        <p>Start reading beautiful romantic stories now. Whether you're looking for inspiration, entertainment, or just a heartwarming tale to brighten your day, PHAZR has thousands of stories waiting for you.</p>
+    </div>
 
     <div id="sidebar">
         <div class="sidebar-header"><span>BLOG SOURCE</span><span onclick="toggleMenu()" style="cursor:pointer">✕</span></div>
@@ -242,11 +287,11 @@
             return blocks.map(block => {
                 if (block.type === 'text') return `<p>${block.text}</p>`;
                 if (block.type === 'image' && block.media?.[0]) {
-                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><img src="${block.media[0].url}" loading="lazy"><div class="big-heart">❤️</div></div>`;
+                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><img src="${block.media[0].url}" loading="lazy" alt="Romantic story image"><div class="big-heart">❤️</div></div>`;
                 }
                 if (block.type === 'video') {
                     const vUrl = block.media?.[0]?.url || block.url;
-                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><video loop muted playsinline src="${vUrl}" class="feed-video" preload="none"></video><div class="big-heart">❤️</div></div>`;
+                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><video loop muted playsinline src="${vUrl}" class="feed-video" preload="none" aria-label="Romantic story video"></video><div class="big-heart">❤️</div></div>`;
                 }
                 return '';
             }).join('');
