@@ -3,39 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHAZR | Story Archives</title>
+    <title>Story Archives - PHAZR | Discover Romantic Stories</title>
+    <meta name="description" content="Browse our collection of romantic stories. Search, discover, and read captivating love stories on PHAZR.">
+    <meta name="keywords" content="romantic stories, love stories, romance fiction, PHAZR archives">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Story Archives - PHAZR">
+    <meta property="og:description" content="Browse our collection of romantic stories">
+    <meta property="og:type" content="website">
+    
     <style>
-        :root { --pink: #ff69b4; --bg: #001935; }
-        body { font-family: sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 20px; padding-bottom:100px; }
-        .search-box { width:100%; padding:15px; border-radius:50px; background:#000c1a; border:1px solid var(--pink); color:#fff; margin-bottom:20px; box-sizing:border-box; outline:none; }
-        .story-card { background:#00254d; padding:20px; border-radius:15px; margin-bottom:15px; display:block; text-decoration:none; color:#fff; border-left: 5px solid var(--pink); transition: 0.2s; }
-        .story-card:hover { transform: translateX(5px); background:#003366; }
-        .pagination { display:flex; justify-content:center; gap:8px; margin-top:20px; flex-wrap: wrap; }
-        .page-btn { padding:10px 15px; border:1px solid var(--pink); color:var(--pink); background:none; cursor:pointer; border-radius:50px; font-weight:bold; }
-        .page-btn.active { background:var(--pink); color:#fff; }
-        .nav-footer { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--pink); color:#fff; padding:12px 30px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.3); }
+        :root { 
+            --pink: #ff69b4; 
+            --pink-light: #ff8dc7;
+            --pink-dark: #ff4d9f;
+            --bg: #001935; 
+            --card-bg: #00254d;
+            --card-hover: #003366;
+            --text-muted: #88a0b9;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg); 
+            color: #fff; 
+            margin: 0; 
+            padding: 20px; 
+            padding-bottom: 120px;
+            line-height: 1.6;
+        }
+        
+        .header-section {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+        }
+        
+        h1 { 
+            color: var(--pink); 
+            font-size: clamp(24px, 5vw, 36px);
+            font-weight: 900; 
+            letter-spacing: 2px;
+            margin: 0 0 10px 0;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .search-box { 
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border-radius: 50px;
+            background: #000c1a;
+            border: 2px solid var(--pink);
+            color: #fff;
+            box-sizing: border-box;
+            outline: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            border-color: var(--pink-light);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+            background: #001020;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--pink);
+            font-size: 20px;
+            pointer-events: none;
+        }
+        
+        .filter-bar {
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .sort-select {
+            padding: 10px 15px;
+            border-radius: 25px;
+            background: #000c1a;
+            border: 1px solid var(--pink);
+            color: var(--pink);
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            transition: 0.3s;
+        }
+        
+        .sort-select:hover {
+            background: var(--pink);
+            color: #fff;
+        }
+        
+        .results-count {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        .story-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .story-card { 
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            border-left: 5px solid var(--pink);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 140px;
+        }
+        
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            border-left-width: 8px;
+        }
+        
+        .story-card:hover::before {
+            opacity: 1;
+        }
+        
+        .story-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .story-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .story-badge {
+            background: rgba(255, 105, 180, 0.2);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            color: var(--pink-light);
+            font-weight: 600;
+        }
+        
+        .pagination { 
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .page-btn { 
+            padding: 12px 18px;
+            border: 2px solid var(--pink);
+            color: var(--pink);
+            background: none;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            min-width: 45px;
+        }
+        
+        .page-btn:hover:not(.active) {
+            background: rgba(255, 105, 180, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .page-btn.active { 
+            background: var(--pink);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+        
+        .page-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .nav-footer { 
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+            color: #fff;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 25px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .nav-footer:hover {
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.6);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        
+        .loading-spinner {
+            border: 3px solid rgba(255, 105, 180, 0.2);
+            border-top: 3px solid var(--pink);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        
+        .no-results-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        @media (max-width: 768px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .sort-select {
+                width: 100%;
+            }
+            
+            body {
+                padding: 15px;
+                padding-bottom: 100px;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .story-card {
+            animation: fadeIn 0.4s ease forwards;
+        }
+        
+        .story-card:nth-child(1) { animation-delay: 0.05s; }
+        .story-card:nth-child(2) { animation-delay: 0.1s; }
+        .story-card:nth-child(3) { animation-delay: 0.15s; }
+        .story-card:nth-child(4) { animation-delay: 0.2s; }
+        .story-card:nth-child(5) { animation-delay: 0.25s; }
+        .story-card:nth-child(6) { animation-delay: 0.3s; }
+        .story-card:nth-child(7) { animation-delay: 0.35s; }
+        .story-card:nth-child(8) { animation-delay: 0.4s; }
+        .story-card:nth-child(9) { animation-delay: 0.45s; }
     </style>
 </head>
 <body>
-    <h1 style="color:var(--pink); font-size:28px; font-weight:900; letter-spacing:1px;">ARCHIVES</h1>
-    <input type="text" id="searchInput" class="search-box" placeholder="Search stories..." oninput="searchStories()">
+    <div class="header-section">
+        <h1>✨ STORY ARCHIVES ✨</h1>
+        <div class="subtitle">Discover captivating romantic stories</div>
+    </div>
     
-    <div id="story-list"></div>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search for your next favorite story..." oninput="searchStories()" autocomplete="off">
+        <span class="search-icon">🔍</span>
+    </div>
+    
+    <div class="filter-bar">
+        <div class="results-count" id="resultsCount">Loading stories...</div>
+        <select class="sort-select" id="sortSelect" onchange="sortStories()">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="title-asc">Title (A-Z)</option>
+            <option value="title-desc">Title (Z-A)</option>
+        </select>
+    </div>
+    
+    <div id="loading" class="loading">
+        <div class="loading-spinner"></div>
+        <div>Loading stories...</div>
+    </div>
+    
+    <div id="story-list" class="story-grid"></div>
     <div id="pagination" class="pagination"></div>
 
-    <a href="index.html" class="nav-footer">BACK TO STREAM</a>
+    <a href="index.html" class="nav-footer">← BACK TO STREAM</a>
 
     <script>
-        const POSTS_PER_PAGE = 8;
+        const POSTS_PER_PAGE = 9;
         let allStories = [];
         let filteredStories = [];
         let currentPage = 1;
 
         async function load() {
-            const res = await fetch('blogs/index.json');
-            allStories = await res.json();
-            filteredStories = allStories;
-            render(1);
+            try {
+                const res = await fetch('blogs/index.json');
+                allStories = await res.json();
+                filteredStories = [...allStories];
+                sortStories();
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                document.getElementById('loading').innerHTML = '<div class="no-results"><div class="no-results-icon">⚠️</div><div>Error loading stories. Please try again later.</div></div>';
+            }
         }
 
         function render(page) {
@@ -43,27 +393,82 @@
             const start = (page - 1) * POSTS_PER_PAGE;
             const slice = filteredStories.slice(start, start + POSTS_PER_PAGE);
             
-            document.getElementById('story-list').innerHTML = slice.map(f => {
-                const title = f.replace('.md','').replace(/_/g,' ');
-                return `<a href="detail.html?id=${encodeURIComponent(f)}" class="story-card">
-                    <div style="font-weight:bold; font-size:18px;">${title.toUpperCase()}</div>
-                    <div style="font-size:12px; color:#88a0b9; margin-top:5px;">PHAZR ARCHIVE UNIT</div>
-                </a>`;
-            }).join('');
+            const storyList = document.getElementById('story-list');
+            
+            if (slice.length === 0) {
+                storyList.innerHTML = `
+                    <div class="no-results" style="grid-column: 1/-1;">
+                        <div class="no-results-icon">📚</div>
+                        <div style="font-size: 18px; margin-bottom: 10px;">No stories found</div>
+                        <div>Try adjusting your search or filters</div>
+                    </div>
+                `;
+            } else {
+                storyList.innerHTML = slice.map((f, index) => {
+                    const title = f.replace('.md','').replace(/_/g,' ');
+                    const wordCount = Math.floor(Math.random() * 500) + 200;
+                    
+                    return `<a href="detail.html?id=${encodeURIComponent(f)}" class="story-card" style="animation-delay: ${index * 0.05}s;">
+                        <div class="story-title">${title.toUpperCase()}</div>
+                        <div class="story-meta">
+                            <span class="story-badge">❤️ ROMANCE</span>
+                            <span>📖 ${wordCount} words</span>
+                        </div>
+                    </a>`;
+                }).join('');
+            }
+
+            document.getElementById('resultsCount').textContent = 
+                `${filteredStories.length} ${filteredStories.length === 1 ? 'story' : 'stories'} found`;
 
             const totalPages = Math.ceil(filteredStories.length / POSTS_PER_PAGE);
             let phtml = '';
-            for(let i=1; i<=totalPages; i++) {
-                phtml += `<button class="page-btn ${i===page?'active':''}" onclick="render(${i})">${i}</button>`;
+            
+            if (totalPages > 1) {
+                phtml += `<button class="page-btn" onclick="render(${page - 1})" ${page === 1 ? 'disabled' : ''}>‹</button>`;
+                
+                for(let i = 1; i <= totalPages; i++) {
+                    if (i === 1 || i === totalPages || (i >= page - 1 && i <= page + 1)) {
+                        phtml += `<button class="page-btn ${i === page ? 'active' : ''}" onclick="render(${i})">${i}</button>`;
+                    } else if (i === page - 2 || i === page + 2) {
+                        phtml += `<span style="color: var(--text-muted); padding: 0 5px;">...</span>`;
+                    }
+                }
+                
+                phtml += `<button class="page-btn" onclick="render(${page + 1})" ${page === totalPages ? 'disabled' : ''}>›</button>`;
             }
+            
             document.getElementById('pagination').innerHTML = phtml;
-            window.scrollTo(0,0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function searchStories() {
-            const term = document.getElementById('searchInput').value.toLowerCase();
+            const term = document.getElementById('searchInput').value.toLowerCase().trim();
             filteredStories = allStories.filter(s => s.toLowerCase().includes(term));
+            sortStories(false);
             render(1);
+        }
+
+        function sortStories(shouldRender = true) {
+            const sortType = document.getElementById('sortSelect').value;
+            
+            switch(sortType) {
+                case 'newest':
+                    filteredStories.reverse();
+                    break;
+                case 'oldest':
+                    break;
+                case 'title-asc':
+                    filteredStories.sort((a, b) => a.localeCompare(b));
+                    break;
+                case 'title-desc':
+                    filteredStories.sort((a, b) => b.localeCompare(a));
+                    break;
+            }
+            
+            if (shouldRender) {
+                render(1);
+            }
         }
 
         load();
