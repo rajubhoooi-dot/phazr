@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0G140CJ4BJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0G140CJ4BJ');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="p:domain_verify" content="a81f071c456d451adf4645c12829f8ec"/>
+    
+    <!-- SEO Meta Tags -->
+    <title>PHAZR | Romantic Stories Live Feed - Read & Share Love Stories</title>
+    <meta name="description" content="Discover and share beautiful romantic stories on PHAZR. Join 12,000+ readers enjoying heartfelt love stories, emotional narratives, and touching tales updated live daily.">
+    <meta name="keywords" content="romantic stories, love stories, romance fiction, heartfelt tales, emotional stories, relationship stories, dating stories, love letters, romantic writing, story community">
+    <meta name="author" content="PHAZR">
+    <link rel="canonical" href="https://phaz.onrender.com/">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="PHAZR | Romantic Stories Live Feed">
+    <meta property="og:description" content="Read beautiful romantic stories live on PHAZR. Join our community of story lovers and discover heartfelt tales daily.">
+    <meta property="og:image" content="https://phaz.onrender.com/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://phaz.onrender.com/">
+    <meta property="og:site_name" content="PHAZR">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PHAZR | Romantic Stories Live Feed">
+    <meta name="twitter:description" content="Read beautiful romantic stories live on PHAZR">
+    <meta name="twitter:image" content="https://phaz.onrender.com/logo.png">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#001935">
+
+    <style>
+        :root {
+            --live-red: #ff4c4c;
+            --live-green: #4cffac;
+            --bg: #001935;
+            --text: #fff;
+            --border: rgba(255,255,255,0.1);
+            --sidebar-w: 280px;
+        }
+
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            background: var(--bg); color: var(--text);
+            margin: 0; padding: 70px 0 80px 0;
+            overscroll-behavior-y: contain;
+        }
+
+        /* --- Sidebar & Overlay --- */
+        #sidebar {
+            position: fixed; top: 0; left: calc(-1 * var(--sidebar-w));
+            width: var(--sidebar-w); height: 100%;
+            background: #001226; z-index: 2000;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-right: 1px solid var(--border);
+            display: flex; flex-direction: column;
+        }
+        #sidebar.open { left: 0; box-shadow: 10px 0 50px rgba(0,0,0,0.8); }
+        .sidebar-header { padding: 20px; font-weight: 900; font-size: 18px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+        .blog-list-scroll { flex-grow: 1; overflow-y: auto; padding: 10px 0; }
+        .blog-item { padding: 12px 20px; font-size: 14px; cursor: pointer; color: #aaa; border-left: 3px solid transparent; transition: all 0.2s; }
+        .blog-item.active { border-left-color: var(--live-green); color: var(--live-green); background: rgba(76, 255, 172, 0.05); }
+        .sidebar-footer { padding: 20px; background: #000d1a; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .footer-link { color: #666; text-decoration: none; font-size: 11px; text-transform: uppercase; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1500; display: none; }
+        .overlay.show { display: block; }
+
+        /* SEO Content Section - HIDDEN BUT CRAWLABLE */
+        .seo-content {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed; top: 0; width: 100%; height: 60px; background: var(--bg);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; border-bottom: 1px solid var(--border); z-index: 1000; box-sizing: border-box;
+        }
+        .logo { font-size: 22px; font-weight: 900; letter-spacing: 2px; }
+        .live-indicator { display: flex; align-items: center; gap: 8px; }
+        .pulse-dot { 
+            height: 10px; 
+            width: 10px; 
+            background-color: var(--live-red); 
+            border-radius: 50%; 
+            animation: pulse-animation 1.3s infinite;
+        }
+        @keyframes pulse-animation { 
+            0% { 
+                transform: scale(0.95); 
+                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.7); 
+            } 
+            70% { 
+                transform: scale(1); 
+                box-shadow: 0 0 0 10px rgba(255, 76, 76, 0); 
+            } 
+            100% { 
+                transform: scale(0.95); 
+                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0); 
+            } 
+        }
+        #user-count { 
+            font-size: 13px; 
+            font-weight: 800; 
+            color: var(--live-red); 
+            transition: all 0.3s ease;
+        }
+
+        /* --- Posts --- */
+        #feed { max-width: 550px; margin: 0 auto; padding: 0 10px; }
+        .post { background: #fff; color: #000; border-radius: 15px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+        .post-header { display: flex; align-items: center; padding: 12px; background: #f9f9f9; border-bottom: 1px solid #eee; }
+        .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--bg); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; }
+        .media-wrapper { position: relative; background: #000; min-height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .media-wrapper img, .media-wrapper video { width: 100%; display: block; height: auto; }
+        .big-heart { position: absolute; font-size: 80px; color: white; opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0); top: 50%; left: 50%; transition: all 0.3s; z-index: 10; text-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .big-heart.animate { opacity: 0.9; transform: translate(-50%, -50%) scale(1.2); }
+        
+        .post-content { padding: 15px; font-size: 15px; }
+        .reblog-trail { border-left: 2px solid #eee; padding-left: 10px; margin-bottom: 10px; color: #444; }
+        .post-actions { display: flex; align-items: center; padding: 10px 0; border-top: 1px solid #f0f0f0; margin-top: 10px; gap: 18px; }
+        .action-icon { background: none; border: none; padding: 5px; cursor: pointer; transition: transform 0.1s; display: flex; align-items: center; color: #333; }
+        .action-icon svg { stroke: currentColor; fill: none; }
+        .like-btn { font-size: 24px; filter: grayscale(1); }
+        .like-btn.liked { filter: grayscale(0); transform: scale(1.1); }
+        .username { font-weight: 800; color: var(--bg); }
+        .caption-fix { text-align: center; margin-top: 15px; font-weight: bold; color: var(--bg); font-size: 14px; }
+
+        footer { position: fixed; bottom: 0; width: 100%; height: 70px; background: var(--bg); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-top: 1px solid var(--border); z-index: 1000; box-sizing: border-box; }
+        .heart-list-btn { background: none; border: none; color: var(--live-red); font-size: 28px; cursor: pointer; }
+        .search-pill { flex-grow: 1; margin: 0 15px; background: rgba(255,255,255,0.15); border-radius: 25px; padding: 10px 20px; }
+        .search-pill input { background: none; border: none; color: #fff; width: 100%; outline: none; }
+    </style>
+</head>
+<body>
+
+    <!-- SEO CONTENT - Hidden but crawlable -->
+    <div class="seo-content">
+        <h1>PHAZR - Read and Share Romantic Stories Live</h1>
+        <p>Welcome to PHAZR, the premier destination for romantic storytelling. Discover thousands of heartfelt love stories, emotional narratives, and touching tales from our community of passionate writers and readers.</p>
+        
+        <h2>What is PHAZR?</h2>
+        <p>PHAZR is a live feed platform where you can read beautiful romantic stories updated in real-time. Our community of over 12,000 readers and writers share their most heartfelt experiences, fictional love stories, and emotional journeys.</p>
+        
+        <h2>Features</h2>
+        <ul>
+            <li>Browse romantic stories from multiple sources</li>
+            <li>Like and save your favorite tales</li>
+            <li>Share stories with friends</li>
+            <li>Discover new writers daily</li>
+            <li>Join a community that celebrates love and romance</li>
+        </ul>
+        
+        <h2>Popular Story Categories</h2>
+        <ul>
+            <li>Romantic fiction</li>
+            <li>Real love stories</li>
+            <li>Heartbreak and healing</li>
+            <li>First love experiences</li>
+            <li>Long distance relationships</li>
+            <li>Wedding stories</li>
+            <li>Dating adventures</li>
+            <li>Emotional confessions</li>
+        </ul>
+        
+        <h2>Join Our Community</h2>
+        <p>Start reading beautiful romantic stories now. Whether you're looking for inspiration, entertainment, or just a heartwarming tale to brighten your day, PHAZR has thousands of stories waiting for you.</p>
+    </div>
+
+    <div id="sidebar"><div class="sidebar-header">BLOG SOURCE<button onclick="toggleMenu()" style="background:none;border:none;color:white;font-size:24px;cursor:pointer;">✕</button></div><div class="blog-list-scroll" id="blog-list"></div><div class="sidebar-footer"><a href="about.html" class="footer-link">About</a><a href="policy.html" class="footer-link">Policy</a><a href="legal.html" class="footer-link">Legal</a><a href="report-abuse.html" class="footer-link">Report</a></div></div>
+    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+    <header><div class="logo">PHAZR</div><div class="live-indicator"><span id="user-count">12,447</span><div class="pulse-dot"></div><button onclick="toggleMenu()" style="background:none;border:none;color:white;font-size:24px;cursor:pointer;">☰</button></div></header>
+    <div id="feed"></div>
+    <footer><button class="heart-list-btn" onclick="window.location.href='bloglist.html'">♥️</button><div class="search-pill"><input type="text" placeholder="Search stories..." disabled></div></footer>
+
+    <script>
+        let globalPosts = [];
+
+        // USER COUNT ANIMATION - FIXED!
+        function animateUserCount() {
+            const countElement = document.getElementById('user-count');
+            let baseCount = 12447;
+            
+            function updateCount() {
+                // Randomly increase or decrease by 1-5 users
+                const change = Math.random() > 0.5 ? 
+                    Math.floor(Math.random() * 5) + 1 : 
+                    -(Math.floor(Math.random() * 5) + 1);
+                
+                baseCount += change;
+                
+                // Keep it within a reasonable range (12400 - 12500)
+                if (baseCount < 12400) baseCount = 12400;
+                if (baseCount > 12500) baseCount = 12500;
+                
+                // Update the display with animation
+                countElement.style.transform = 'scale(1.1)';
+                countElement.textContent = baseCount.toLocaleString();
+                
+                setTimeout(() => {
+                    countElement.style.transform = 'scale(1)';
+                }, 150);
+            }
+            
+            // Update every 3-8 seconds (random interval for realistic feel)
+            function scheduleNextUpdate() {
+                const delay = Math.random() * 5000 + 3000; // 3-8 seconds
+                setTimeout(() => {
+                    updateCount();
+                    scheduleNextUpdate();
+                }, delay);
+            }
+            
+            scheduleNextUpdate();
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('show');
+        }
+
+        async function loadSidebar() {
+            const response = await fetch('blogs/index.json');
+            const allPosts = await response.json();
+            const blogNames = [...new Set(allPosts.map(p => p.blog_name))];
+            const listElem = document.getElementById('blog-list');
+            listElem.innerHTML = `<div class="blog-item active" onclick="filterBlog('', this)">All Stories</div>`;
+            blogNames.forEach(name => {
+                listElem.innerHTML += `<div class="blog-item" onclick="filterBlog('${name}', this)">${name}</div>`;
+            });
+        }
+
+        function filterBlog(blogName, element) {
+            document.querySelectorAll('.blog-item').forEach(el => el.classList.remove('active'));
+            if(element) element.classList.add('active');
+            const term = blogName.toLowerCase();
+            const feed = document.getElementById('feed');
+            const filtered = term === "" ? globalPosts : globalPosts.filter(p => p.blog_name.toLowerCase() === term);
+            feed.innerHTML = '';
+            filtered.forEach(post => {
+                const div = document.createElement('div');
+                div.innerHTML = createPostCard(post);
+                feed.appendChild(div);
+                div.querySelectorAll('.feed-video').forEach(v => videoObserver.observe(v));
+            });
+            toggleMenu();
+        }
+
+        function createPostCard(post) {
+            const randomLikes = Math.floor(Math.random() * 45000) + 1200;
+            const tumblrUrl = post.post_url || "tumblr.com"; 
+            const phazrUrl = window.location.origin;
+
+            let firstMedia = "";
+            if (post.content && Array.isArray(post.content)) {
+                const mediaBlock = post.content.find(b => b.type === 'image' || b.type === 'video');
+                if (mediaBlock) firstMedia = mediaBlock.media?.[0]?.url || mediaBlock.url || "";
+            }
+
+            return `
+            <div class="post">
+                <div class="post-header"><div class="avatar">P</div><span class="username">@phazr</span></div>
+                <div class="post-content">
+                    ${post.trail ? post.trail.map(t => `<div class="reblog-trail"><span class="username">@${t.blog.name}</span>${renderContent(t.content)}</div>`).join('') : ''}
+                    <div class="original-content">${renderContent(post.content)}</div>
+                    
+                    <div class="post-actions">
+                        <button class="action-icon like-btn" onclick="toggleLike(this)">❤️</button>
+                        <span class="like-count" style="color:#333; font-weight:800;">${randomLikes.toLocaleString()}</span>
+                        
+                        <button class="action-icon" onclick="shareLinksOnly('${phazrUrl}', '${tumblrUrl}')">
+                           <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                        </button>
+
+                        <button class="action-icon" onclick="shareMediaOnly('${firstMedia}')">
+                           <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="caption-fix">romantic story at bottom ♥️!!</div>
+                </div>
+            </div>`;
+        }
+
+        async function shareLinksOnly(phazrLink, tumblrLink) {
+            const nonClickableTumblr = "REF-" + tumblrLink.replace('https://', '').replace('http://', '');
+            const liveLink = phazrLink.includes('localhost') ? 'https://phaz.onrender.com' : phazrLink;
+            const shareText = `Check this out on PHAZR! ❤️\n${liveLink}\n\nOriginal Source: ${nonClickableTumblr}`;
+            if (navigator.share) {
+                try { await navigator.share({ title: 'PHAZR', text: shareText }); } catch (e) {}
+            } else {
+                navigator.clipboard.writeText(shareText);
+                alert("Links copied! ❤️");
+            }
+        }
+
+        async function shareMediaOnly(mediaUrl) {
+            if (!mediaUrl) return;
+            try {
+                const proxiedUrl = `https://images.weserv.nl/?url=${encodeURIComponent(mediaUrl)}`;
+                const response = await fetch(proxiedUrl);
+                const blob = await response.blob();
+                const file = new File([blob], "share.jpg", { type: blob.type });
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({ files: [file] });
+                } else { window.open(mediaUrl, '_blank'); }
+            } catch (e) { alert("Long-press image to save! ❤️"); }
+        }
+
+        function toggleLike(btn) {
+            btn.classList.toggle('liked');
+            const countLabel = btn.nextElementSibling;
+            let cur = parseInt(countLabel.innerText.replace(/,/g, ''));
+            countLabel.innerText = (btn.classList.contains('liked') ? cur + 1 : cur - 1).toLocaleString();
+        }
+
+        function handleDoubleTap(element) {
+            const heart = element.querySelector('.big-heart');
+            const postActions = element.closest('.post').querySelector('.like-btn');
+            heart.classList.add('animate');
+            setTimeout(() => heart.classList.remove('animate'), 800);
+            if (!postActions.classList.contains('liked')) toggleLike(postActions);
+        }
+
+        function renderContent(blocks) {
+            if (!blocks) return '';
+            return blocks.map(block => {
+                if (block.type === 'text') return `<p>${block.text}</p>`;
+                if (block.type === 'image' && block.media?.[0]) {
+                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><img src="${block.media[0].url}" loading="lazy" alt="Romantic story image"><div class="big-heart">❤️</div></div>`;
+                }
+                if (block.type === 'video') {
+                    const vUrl = block.media?.[0]?.url || block.url;
+                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><video loop muted playsinline src="${vUrl}" class="feed-video" preload="none" aria-label="Romantic story video"></video><div class="big-heart">❤️</div></div>`;
+                }
+                return '';
+            }).join('');
+        }
+
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.play().catch(()=>{});
+                else entry.target.pause();
+            });
+        }, { threshold: 0.5 });
+
+        async function startLiveStream() {
+            const feed = document.getElementById('feed');
+            const eventSource = new EventSource('/api/stream-posts');
+            eventSource.onmessage = (event) => {
+                const posts = JSON.parse(event.data);
+                globalPosts = [...globalPosts, ...posts];
+                posts.forEach(post => {
+                    const div = document.createElement('div');
+                    div.innerHTML = createPostCard(post);
+                    feed.appendChild(div);
+                    div.querySelectorAll('.feed-video').forEach(v => videoObserver.observe(v));
+                });
+            };
+        }
+
+        window.onload = () => { 
+            loadSidebar(); 
+            startLiveStream();
+            animateUserCount(); // Start the live count animation!
+        };
+    </script>
+</body>
+</html>
