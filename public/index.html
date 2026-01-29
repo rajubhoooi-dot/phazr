@@ -13,14 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="p:domain_verify" content="a81f071c456d451adf4645c12829f8ec"/>
     
-    <!-- SEO Meta Tags -->
+    <!-- SEO Meta Tags - UPDATED -->
     <title>PHAZR | Romantic Stories Live Feed - Read & Share Love Stories</title>
     <meta name="description" content="Discover and share beautiful romantic stories on PHAZR. Join 12,000+ readers enjoying heartfelt love stories, emotional narratives, and touching tales updated live daily.">
     <meta name="keywords" content="romantic stories, love stories, romance fiction, heartfelt tales, emotional stories, relationship stories, dating stories, love letters, romantic writing, story community">
     <meta name="author" content="PHAZR">
     <link rel="canonical" href="https://phaz.onrender.com/">
     
-    <!-- Open Graph / Social Media -->
+    <!-- Open Graph / Social Media - UPDATED -->
     <meta property="og:title" content="PHAZR | Romantic Stories Live Feed">
     <meta property="og:description" content="Read beautiful romantic stories live on PHAZR. Join our community of story lovers and discover heartfelt tales daily.">
     <meta property="og:image" content="https://phaz.onrender.com/logo.png">
@@ -32,7 +32,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="PHAZR | Romantic Stories Live Feed">
     <meta name="twitter:description" content="Read beautiful romantic stories live on PHAZR">
-    <meta name="twitter:image" content="https://phaz.onrender.com/logo.png">
+    <meta name="twitter:image" content="https://phaz.onremder.com/logo.png">
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#001935">
@@ -90,33 +90,9 @@
         }
         .logo { font-size: 22px; font-weight: 900; letter-spacing: 2px; }
         .live-indicator { display: flex; align-items: center; gap: 8px; }
-        .pulse-dot { 
-            height: 10px; 
-            width: 10px; 
-            background-color: var(--live-red); 
-            border-radius: 50%; 
-            animation: pulse-animation 1.3s infinite;
-        }
-        @keyframes pulse-animation { 
-            0% { 
-                transform: scale(0.95); 
-                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.7); 
-            } 
-            70% { 
-                transform: scale(1); 
-                box-shadow: 0 0 0 10px rgba(255, 76, 76, 0); 
-            } 
-            100% { 
-                transform: scale(0.95); 
-                box-shadow: 0 0 0 0 rgba(255, 76, 76, 0); 
-            } 
-        }
-        #user-count { 
-            font-size: 13px; 
-            font-weight: 800; 
-            color: var(--live-red); 
-            transition: all 0.3s ease;
-        }
+        .pulse-dot { height: 10px; width: 10px; background-color: var(--live-red); border-radius: 50%; animation: pulse-animation 1.5s infinite; }
+        @keyframes pulse-animation { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 76, 76, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 76, 76, 0); } }
+        #user-count { font-size: 13px; font-weight: 800; color: var(--live-red); }
 
         /* --- Posts --- */
         #feed { max-width: 550px; margin: 0 auto; padding: 0 10px; }
@@ -155,76 +131,45 @@
         <p>PHAZR is a live feed platform where you can read beautiful romantic stories updated in real-time. Our community of over 12,000 readers and writers share their most heartfelt experiences, fictional love stories, and emotional journeys.</p>
         
         <h2>Features</h2>
-        <ul>
-            <li>Browse romantic stories from multiple sources</li>
-            <li>Like and save your favorite tales</li>
-            <li>Share stories with friends</li>
-            <li>Discover new writers daily</li>
-            <li>Join a community that celebrates love and romance</li>
-        </ul>
+        <p>Browse romantic stories from multiple sources, like and save your favorite tales, share stories with friends, discover new writers daily, and join a community that celebrates love and romance.</p>
         
         <h2>Popular Story Categories</h2>
-        <ul>
-            <li>Romantic fiction</li>
-            <li>Real love stories</li>
-            <li>Heartbreak and healing</li>
-            <li>First love experiences</li>
-            <li>Long distance relationships</li>
-            <li>Wedding stories</li>
-            <li>Dating adventures</li>
-            <li>Emotional confessions</li>
-        </ul>
+        <p>Romantic fiction, real love stories, heartbreak and healing, first love experiences, long distance relationships, wedding stories, dating adventures, and emotional confessions.</p>
         
         <h2>Join Our Community</h2>
         <p>Start reading beautiful romantic stories now. Whether you're looking for inspiration, entertainment, or just a heartwarming tale to brighten your day, PHAZR has thousands of stories waiting for you.</p>
     </div>
 
-    <div id="sidebar"><div class="sidebar-header">BLOG SOURCE<button onclick="toggleMenu()" style="background:none;border:none;color:white;font-size:24px;cursor:pointer;">✕</button></div><div class="blog-list-scroll" id="blog-list"></div><div class="sidebar-footer"><a href="about.html" class="footer-link">About</a><a href="policy.html" class="footer-link">Policy</a><a href="legal.html" class="footer-link">Legal</a><a href="report-abuse.html" class="footer-link">Report</a></div></div>
-    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
-    <header><div class="logo">PHAZR</div><div class="live-indicator"><span id="user-count">12,447</span><div class="pulse-dot"></div><button onclick="toggleMenu()" style="background:none;border:none;color:white;font-size:24px;cursor:pointer;">☰</button></div></header>
+    <div id="sidebar">
+        <div class="sidebar-header"><span>BLOG SOURCE</span><span onclick="toggleMenu()" style="cursor:pointer">✕</span></div>
+        <div class="blog-list-scroll" id="sidebar-list">
+            <div class="blog-item active" onclick="filterBlog('')">All Stories</div>
+        </div>
+        <div class="sidebar-footer">
+            <a href="about.html" class="footer-link">About</a>
+            <a href="policy.html" class="footer-link">Policy</a>
+            <a href="legal.html" class="footer-link">Legal</a>
+            <a href="report-abuse.html" class="footer-link">Report</a>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <header>
+        <div class="logo">PHAZR</div>
+        <div class="live-indicator"><span class="pulse-dot"></span><span id="user-count">12,447</span></div>
+    </header>
+
     <div id="feed"></div>
-    <footer><button class="heart-list-btn" onclick="window.location.href='bloglist.html'">♥️</button><div class="search-pill"><input type="text" placeholder="Search stories..." disabled></div></footer>
+
+    <footer>
+        <button class="heart-list-btn" onclick="window.open('bloglist.html', '_blank')">♥️</button>
+        <div class="search-pill"><input type="text" placeholder="romantic story at bottom ♥️!!"></div>
+        <button onclick="toggleMenu()" style="background:none; border:none; color:white; font-size:24px; cursor:pointer">☰</button>
+    </footer>
 
     <script>
         let globalPosts = [];
-
-        // USER COUNT ANIMATION - FIXED!
-        function animateUserCount() {
-            const countElement = document.getElementById('user-count');
-            let baseCount = 12447;
-            
-            function updateCount() {
-                // Randomly increase or decrease by 1-5 users
-                const change = Math.random() > 0.5 ? 
-                    Math.floor(Math.random() * 5) + 1 : 
-                    -(Math.floor(Math.random() * 5) + 1);
-                
-                baseCount += change;
-                
-                // Keep it within a reasonable range (12400 - 12500)
-                if (baseCount < 12400) baseCount = 12400;
-                if (baseCount > 12500) baseCount = 12500;
-                
-                // Update the display with animation
-                countElement.style.transform = 'scale(1.1)';
-                countElement.textContent = baseCount.toLocaleString();
-                
-                setTimeout(() => {
-                    countElement.style.transform = 'scale(1)';
-                }, 150);
-            }
-            
-            // Update every 3-8 seconds (random interval for realistic feel)
-            function scheduleNextUpdate() {
-                const delay = Math.random() * 5000 + 3000; // 3-8 seconds
-                setTimeout(() => {
-                    updateCount();
-                    scheduleNextUpdate();
-                }, delay);
-            }
-            
-            scheduleNextUpdate();
-        }
 
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('open');
@@ -232,14 +177,18 @@
         }
 
         async function loadSidebar() {
-            const response = await fetch('blogs/index.json');
-            const allPosts = await response.json();
-            const blogNames = [...new Set(allPosts.map(p => p.blog_name))];
-            const listElem = document.getElementById('blog-list');
-            listElem.innerHTML = `<div class="blog-item active" onclick="filterBlog('', this)">All Stories</div>`;
-            blogNames.forEach(name => {
-                listElem.innerHTML += `<div class="blog-item" onclick="filterBlog('${name}', this)">${name}</div>`;
-            });
+            try {
+                const response = await fetch('/api/blogs');
+                const blogs = await response.json();
+                const list = document.getElementById('sidebar-list');
+                blogs.forEach(blog => {
+                    const div = document.createElement('div');
+                    div.className = 'blog-item';
+                    div.innerText = blog;
+                    div.onclick = () => filterBlog(blog, div);
+                    list.appendChild(div);
+                });
+            } catch (e) { console.error(e); }
         }
 
         function filterBlog(blogName, element) {
@@ -295,7 +244,7 @@
 
         async function shareLinksOnly(phazrLink, tumblrLink) {
             const nonClickableTumblr = "REF-" + tumblrLink.replace('https://', '').replace('http://', '');
-            const liveLink = phazrLink.includes('localhost') ? 'https://phaz.onrender.com' : phazrLink;
+            const liveLink = phazrLink.includes('localhost') ? 'https://phazr.onrender.com' : phazrLink;
             const shareText = `Check this out on PHAZR! ❤️\n${liveLink}\n\nOriginal Source: ${nonClickableTumblr}`;
             if (navigator.share) {
                 try { await navigator.share({ title: 'PHAZR', text: shareText }); } catch (e) {}
@@ -370,11 +319,7 @@
             };
         }
 
-        window.onload = () => { 
-            loadSidebar(); 
-            startLiveStream();
-            animateUserCount(); // Start the live count animation!
-        };
+        window.onload = () => { loadSidebar(); startLiveStream(); };
     </script>
 </body>
 </html>
