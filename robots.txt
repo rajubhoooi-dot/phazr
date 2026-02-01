@@ -1,8 +1,6 @@
 User-agent: *
 Allow: /
-Allow: /index.html
-Allow: /bloglist.html
-Allow: /detail.html
+Allow: /api/blogs
+Allow: /api/stream-posts
 
-# Sitemaps
 Sitemap: https://phaz.onrender.com/sitemap.xml
