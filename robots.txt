@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Allow: /index.html
+Allow: /bloglist.html
+Allow: /detail.html
 
-Sitemap: https://phazr.netlify.app/sitemap.xml
+# Sitemaps
+Sitemap: https://phaz.onrender.com/sitemap.xml
