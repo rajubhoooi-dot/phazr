@@ -131,7 +131,9 @@
         <div class="live-indicator"><span class="pulse-dot"></span><span id="user-count">12,447</span></div>
     </header>
 
-    <div id="feed"></div>
+    <div id="feed">
+        <p style="text-align:center; padding:50px; color:#aaa;">Loading stories...</p>
+    </div>
 
     <footer>
         <button class="heart-list-btn" onclick="window.open('bloglist.html', '_blank')">♥️</button>
@@ -143,10 +145,10 @@
         let globalPosts = [];
         let currentUsers = 12447;
 
-        // Dynamic User Counter
+        // --- Live User Simulation ---
         function updateLiveUsers() {
             const userElement = document.getElementById('user-count');
-            const change = Math.floor(Math.random() * 9) - 4; // -4 to +4
+            const change = Math.floor(Math.random() * 9) - 4; 
             currentUsers += change;
             if (currentUsers < 12000) currentUsers = 12150;
             if (currentUsers > 13500) currentUsers = 13400;
@@ -175,56 +177,62 @@
             } catch (e) { console.warn("Sidebar offline."); }
         }
 
+        // --- NEW: Static Feed Loader (This fixes the empty feed) ---
+        async function loadInitialFeed() {
+            try {
+                // Ensure you have an index.json file in your root folder
+                const response = await fetch('/index.json'); 
+                if (!response.ok) throw new Error("Could not find index.json");
+                
+                const posts = await response.json();
+                globalPosts = posts; 
+                
+                const feed = document.getElementById('feed');
+                feed.innerHTML = ''; 
+                
+                posts.forEach(post => {
+                    const div = document.createElement('div');
+                    div.innerHTML = createPostCard(post);
+                    feed.appendChild(div);
+                    // Observe videos if present
+                    div.querySelectorAll('.feed-video').forEach(v => videoObserver.observe(v));
+                });
+            } catch (err) {
+                console.error("Feed error:", err);
+                document.getElementById('feed').innerHTML = '<p style="text-align:center; padding:50px; color:#aaa;">No stories found yet. Make sure index.json is in your root folder!</p>';
+            }
+        }
+
         function filterBlog(blogName, element) {
             document.querySelectorAll('.blog-item').forEach(el => el.classList.remove('active'));
             if(element) element.classList.add('active');
             const term = blogName.toLowerCase();
             const feed = document.getElementById('feed');
-            const filtered = term === "" ? globalPosts : globalPosts.filter(p => p.blog_name.toLowerCase() === term);
+            const filtered = term === "" ? globalPosts : globalPosts.filter(p => p.blog_name && p.blog_name.toLowerCase() === term);
             feed.innerHTML = '';
             filtered.forEach(post => {
                 const div = document.createElement('div');
                 div.innerHTML = createPostCard(post);
                 feed.appendChild(div);
-                div.querySelectorAll('.feed-video').forEach(v => videoObserver.observe(v));
             });
             toggleMenu();
         }
 
         function createPostCard(post) {
             const randomLikes = Math.floor(Math.random() * 30000) + 1500;
-            const phazrUrl = window.location.origin;
-            let media = "";
-            if (post.content && Array.isArray(post.content)) {
-                const m = post.content.find(b => b.type === 'image' || b.type === 'video');
-                if (m) media = m.media?.[0]?.url || m.url || "";
-            }
-
             return `
             <div class="post">
-                <div class="post-header"><div class="avatar">P</div><span class="username">@phazr</span></div>
+                <div class="post-header"><div class="avatar">P</div><span class="username">@${post.blog_name || 'phazr'}</span></div>
                 <div class="post-content">
                     ${post.trail ? post.trail.map(t => `<div class="reblog-trail"><span class="username">@${t.blog.name}</span>${renderContent(t.content)}</div>`).join('') : ''}
                     <div class="original-content">${renderContent(post.content)}</div>
                     <div class="post-actions">
                         <button class="action-icon like-btn" onclick="toggleLike(this)">❤️</button>
                         <span class="like-count" style="color:#333; font-weight:800;">${randomLikes.toLocaleString()}</span>
-                        <button class="action-icon" onclick="shareLinksOnly('${phazrUrl}')">
-                           <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
-                        </button>
                     </div>
                     <div class="caption-fix">romantic story at bottom ♥️!!</div>
                 </div>
             </div>`;
-        }
-
-        async function shareLinksOnly(url) {
-            if (navigator.share) {
-                try { await navigator.share({ title: 'PHAZR', text: `Read stories on PHAZR! ❤️\n${url}` }); } catch (e) {}
-            } else {
-                navigator.clipboard.writeText(url);
-                alert("Link copied! ❤️");
-            }
         }
 
         function toggleLike(btn) {
@@ -234,24 +242,16 @@
             countLabel.innerText = (btn.classList.contains('liked') ? cur + 1 : cur - 1).toLocaleString();
         }
 
-        function handleDoubleTap(element) {
-            const heart = element.querySelector('.big-heart');
-            const postActions = element.closest('.post').querySelector('.like-btn');
-            heart.classList.add('animate');
-            setTimeout(() => heart.classList.remove('animate'), 800);
-            if (!postActions.classList.contains('liked')) toggleLike(postActions);
-        }
-
         function renderContent(blocks) {
             if (!blocks) return '';
             return blocks.map(block => {
                 if (block.type === 'text') return `<p>${block.text}</p>`;
                 if (block.type === 'image' && block.media?.[0]) {
-                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><img src="${block.media[0].url}" loading="lazy" alt="Romantic story"><div class="big-heart">❤️</div></div>`;
+                    return `<div class="media-wrapper"><img src="${block.media[0].url}" loading="lazy" alt="Romantic story image"></div>`;
                 }
                 if (block.type === 'video') {
                     const vUrl = block.media?.[0]?.url || block.url;
-                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><video loop muted playsinline src="${vUrl}" class="feed-video" preload="none"></video><div class="big-heart">❤️</div></div>`;
+                    return `<div class="media-wrapper"><video loop muted playsinline src="${vUrl}" class="feed-video" preload="none"></video></div>`;
                 }
                 return '';
             }).join('');
@@ -266,6 +266,7 @@
 
         window.onload = () => { 
             loadSidebar(); 
+            loadInitialFeed(); 
             updateLiveUsers(); 
         };
     </script>
