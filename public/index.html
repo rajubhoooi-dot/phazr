@@ -13,28 +13,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="p:domain_verify" content="a81f071c456d451adf4645c12829f8ec"/>
     
-    <!-- SEO Meta Tags - UPDATED -->
     <title>PHAZR | Romantic Stories Live Feed - Read & Share Love Stories</title>
-    <meta name="description" content="Discover and share beautiful romantic stories on PHAZR. Join 12,000+ readers enjoying heartfelt love stories, emotional narratives, and touching tales updated live daily.">
-    <meta name="keywords" content="romantic stories, love stories, romance fiction, heartfelt tales, emotional stories, relationship stories, dating stories, love letters, romantic writing, story community">
-    <meta name="author" content="PHAZR">
+    <meta name="description" content="Discover and share beautiful romantic stories on PHAZR. Join 12,000+ readers enjoying heartfelt love stories updated live daily.">
+    <meta name="keywords" content="romantic stories, love stories, romance fiction, heartfelt tales, emotional stories, relationship stories">
     <link rel="canonical" href="https://phaz.onrender.com/">
     
-    <!-- Open Graph / Social Media - UPDATED -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LiveBlogPosting",
+      "headline": "PHAZR Romantic Stories Live Feed",
+      "description": "Daily updated romantic and heartfelt stories.",
+      "author": {"@type": "Organization", "name": "PHAZR"},
+      "publisher": {"@type": "Organization", "name": "PHAZR"}
+    }
+    </script>
+    
     <meta property="og:title" content="PHAZR | Romantic Stories Live Feed">
-    <meta property="og:description" content="Read beautiful romantic stories live on PHAZR. Join our community of story lovers and discover heartfelt tales daily.">
+    <meta property="og:description" content="Read beautiful romantic stories live on PHAZR. Join our community.">
     <meta property="og:image" content="https://phaz.onrender.com/logo.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://phaz.onrender.com/">
-    <meta property="og:site_name" content="PHAZR">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PHAZR | Romantic Stories Live Feed">
-    <meta name="twitter:description" content="Read beautiful romantic stories live on PHAZR">
-    <meta name="twitter:image" content="https://phaz.onremder.com/logo.png">
-    
-    <!-- Theme Color -->
     <meta name="theme-color" content="#001935">
 
     <style>
@@ -73,14 +73,7 @@
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1500; display: none; }
         .overlay.show { display: block; }
 
-        /* SEO Content Section - HIDDEN BUT CRAWLABLE */
-        .seo-content {
-            position: absolute;
-            left: -9999px;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
+        .seo-content { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
         /* --- Header --- */
         header {
@@ -92,7 +85,7 @@
         .live-indicator { display: flex; align-items: center; gap: 8px; }
         .pulse-dot { height: 10px; width: 10px; background-color: var(--live-red); border-radius: 50%; animation: pulse-animation 1.5s infinite; }
         @keyframes pulse-animation { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 76, 76, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 76, 76, 0); } }
-        #user-count { font-size: 13px; font-weight: 800; color: var(--live-red); }
+        #user-count { font-size: 13px; font-weight: 800; color: var(--live-red); min-width: 50px; text-align: right; }
 
         /* --- Posts --- */
         #feed { max-width: 550px; margin: 0 auto; padding: 0 10px; }
@@ -109,7 +102,7 @@
         .post-actions { display: flex; align-items: center; padding: 10px 0; border-top: 1px solid #f0f0f0; margin-top: 10px; gap: 18px; }
         .action-icon { background: none; border: none; padding: 5px; cursor: pointer; transition: transform 0.1s; display: flex; align-items: center; color: #333; }
         .action-icon svg { stroke: currentColor; fill: none; }
-        .like-btn { font-size: 24px; filter: grayscale(1); }
+        .like-btn { font-size: 24px; filter: grayscale(1); border:none; background:none; cursor:pointer;}
         .like-btn.liked { filter: grayscale(0); transform: scale(1.1); }
         .username { font-weight: 800; color: var(--bg); }
         .caption-fix { text-align: center; margin-top: 15px; font-weight: bold; color: var(--bg); font-size: 14px; }
@@ -122,26 +115,13 @@
 </head>
 <body>
 
-    <!-- SEO CONTENT - Hidden but crawlable -->
     <div class="seo-content">
-        <h1>PHAZR - Read and Share Romantic Stories Live</h1>
-        <p>Welcome to PHAZR, the premier destination for romantic storytelling. Discover thousands of heartfelt love stories, emotional narratives, and touching tales from our community of passionate writers and readers.</p>
-        
-        <h2>What is PHAZR?</h2>
-        <p>PHAZR is a live feed platform where you can read beautiful romantic stories updated in real-time. Our community of over 12,000 readers and writers share their most heartfelt experiences, fictional love stories, and emotional journeys.</p>
-        
-        <h2>Features</h2>
-        <p>Browse romantic stories from multiple sources, like and save your favorite tales, share stories with friends, discover new writers daily, and join a community that celebrates love and romance.</p>
-        
-        <h2>Popular Story Categories</h2>
-        <p>Romantic fiction, real love stories, heartbreak and healing, first love experiences, long distance relationships, wedding stories, dating adventures, and emotional confessions.</p>
-        
-        <h2>Join Our Community</h2>
-        <p>Start reading beautiful romantic stories now. Whether you're looking for inspiration, entertainment, or just a heartwarming tale to brighten your day, PHAZR has thousands of stories waiting for you.</p>
+        <h1>PHAZR - Romantic Stories Community</h1>
+        <p>Read thousands of romantic stories live. Heartfelt love stories and emotional narratives.</p>
     </div>
 
     <div id="sidebar">
-        <div class="sidebar-header"><span>BLOG SOURCE</span><span onclick="toggleMenu()" style="cursor:pointer">✕</span></div>
+        <div class="sidebar-header"><span>SOURCES</span><span onclick="toggleMenu()" style="cursor:pointer">✕</span></div>
         <div class="blog-list-scroll" id="sidebar-list">
             <div class="blog-item active" onclick="filterBlog('')">All Stories</div>
         </div>
@@ -164,12 +144,24 @@
 
     <footer>
         <button class="heart-list-btn" onclick="window.open('bloglist.html', '_blank')">♥️</button>
-        <div class="search-pill"><input type="text" placeholder="romantic story at bottom ♥️!!"></div>
+        <div class="search-pill"><input type="text" placeholder="Search stories..."></div>
         <button onclick="toggleMenu()" style="background:none; border:none; color:white; font-size:24px; cursor:pointer">☰</button>
     </footer>
 
     <script>
         let globalPosts = [];
+        let currentUsers = 12447;
+
+        // --- Live User Simulation ---
+        function updateLiveUsers() {
+            const userElement = document.getElementById('user-count');
+            const change = Math.floor(Math.random() * 11) - 5; // -5 to +5
+            currentUsers += change;
+            if (currentUsers < 12000) currentUsers = 12000;
+            if (currentUsers > 13000) currentUsers = 13000;
+            userElement.innerText = currentUsers.toLocaleString();
+            setTimeout(updateLiveUsers, Math.random() * 5000 + 2000);
+        }
 
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('open');
@@ -179,6 +171,7 @@
         async function loadSidebar() {
             try {
                 const response = await fetch('/api/blogs');
+                if(!response.ok) return;
                 const blogs = await response.json();
                 const list = document.getElementById('sidebar-list');
                 blogs.forEach(blog => {
@@ -188,7 +181,7 @@
                     div.onclick = () => filterBlog(blog, div);
                     list.appendChild(div);
                 });
-            } catch (e) { console.error(e); }
+            } catch (e) { console.warn("Sidebar missing."); }
         }
 
         function filterBlog(blogName, element) {
@@ -209,9 +202,7 @@
 
         function createPostCard(post) {
             const randomLikes = Math.floor(Math.random() * 45000) + 1200;
-            const tumblrUrl = post.post_url || "tumblr.com"; 
             const phazrUrl = window.location.origin;
-
             let firstMedia = "";
             if (post.content && Array.isArray(post.content)) {
                 const mediaBlock = post.content.find(b => b.type === 'image' || b.type === 'video');
@@ -224,15 +215,12 @@
                 <div class="post-content">
                     ${post.trail ? post.trail.map(t => `<div class="reblog-trail"><span class="username">@${t.blog.name}</span>${renderContent(t.content)}</div>`).join('') : ''}
                     <div class="original-content">${renderContent(post.content)}</div>
-                    
                     <div class="post-actions">
                         <button class="action-icon like-btn" onclick="toggleLike(this)">❤️</button>
                         <span class="like-count" style="color:#333; font-weight:800;">${randomLikes.toLocaleString()}</span>
-                        
-                        <button class="action-icon" onclick="shareLinksOnly('${phazrUrl}', '${tumblrUrl}')">
+                        <button class="action-icon" onclick="shareLinksOnly('${phazrUrl}', '${post.post_url || ''}')">
                            <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
                         </button>
-
                         <button class="action-icon" onclick="shareMediaOnly('${firstMedia}')">
                            <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
                         </button>
@@ -242,29 +230,26 @@
             </div>`;
         }
 
-        async function shareLinksOnly(phazrLink, tumblrLink) {
-            const nonClickableTumblr = "REF-" + tumblrLink.replace('https://', '').replace('http://', '');
-            const liveLink = phazrLink.includes('localhost') ? 'https://phazr.onrender.com' : phazrLink;
-            const shareText = `Check this out on PHAZR! ❤️\n${liveLink}\n\nOriginal Source: ${nonClickableTumblr}`;
+        async function shareLinksOnly(phazrLink, sourceUrl) {
+            const shareText = `Read this on PHAZR! ❤️\n${phazrLink}`;
             if (navigator.share) {
                 try { await navigator.share({ title: 'PHAZR', text: shareText }); } catch (e) {}
             } else {
                 navigator.clipboard.writeText(shareText);
-                alert("Links copied! ❤️");
+                alert("Link copied! ❤️");
             }
         }
 
         async function shareMediaOnly(mediaUrl) {
             if (!mediaUrl) return;
             try {
-                const proxiedUrl = `https://images.weserv.nl/?url=${encodeURIComponent(mediaUrl)}`;
-                const response = await fetch(proxiedUrl);
+                const response = await fetch(`https://images.weserv.nl/?url=${encodeURIComponent(mediaUrl)}`);
                 const blob = await response.blob();
-                const file = new File([blob], "share.jpg", { type: blob.type });
+                const file = new File([blob], "story.jpg", { type: blob.type });
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     await navigator.share({ files: [file] });
                 } else { window.open(mediaUrl, '_blank'); }
-            } catch (e) { alert("Long-press image to save! ❤️"); }
+            } catch (e) { alert("Save image to share! ❤️"); }
         }
 
         function toggleLike(btn) {
@@ -287,11 +272,11 @@
             return blocks.map(block => {
                 if (block.type === 'text') return `<p>${block.text}</p>`;
                 if (block.type === 'image' && block.media?.[0]) {
-                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><img src="${block.media[0].url}" loading="lazy" alt="Romantic story image"><div class="big-heart">❤️</div></div>`;
+                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><img src="${block.media[0].url}" loading="lazy" alt="Romantic story"><div class="big-heart">❤️</div></div>`;
                 }
                 if (block.type === 'video') {
                     const vUrl = block.media?.[0]?.url || block.url;
-                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><video loop muted playsinline src="${vUrl}" class="feed-video" preload="none" aria-label="Romantic story video"></video><div class="big-heart">❤️</div></div>`;
+                    return `<div class="media-wrapper" ondblclick="handleDoubleTap(this)"><video loop muted playsinline src="${vUrl}" class="feed-video" preload="none"></video><div class="big-heart">❤️</div></div>`;
                 }
                 return '';
             }).join('');
@@ -305,21 +290,28 @@
         }, { threshold: 0.5 });
 
         async function startLiveStream() {
-            const feed = document.getElementById('feed');
-            const eventSource = new EventSource('/api/stream-posts');
-            eventSource.onmessage = (event) => {
-                const posts = JSON.parse(event.data);
-                globalPosts = [...globalPosts, ...posts];
-                posts.forEach(post => {
-                    const div = document.createElement('div');
-                    div.innerHTML = createPostCard(post);
-                    feed.appendChild(div);
-                    div.querySelectorAll('.feed-video').forEach(v => videoObserver.observe(v));
-                });
-            };
+            try {
+                const eventSource = new EventSource('/api/stream-posts');
+                eventSource.onmessage = (event) => {
+                    const posts = JSON.parse(event.data);
+                    globalPosts = [...globalPosts, ...posts];
+                    const feed = document.getElementById('feed');
+                    posts.forEach(post => {
+                        const div = document.createElement('div');
+                        div.innerHTML = createPostCard(post);
+                        feed.appendChild(div);
+                        div.querySelectorAll('.feed-video').forEach(v => videoObserver.observe(v));
+                    });
+                };
+                eventSource.onerror = () => { eventSource.close(); };
+            } catch (err) { console.log("Stream offline."); }
         }
 
-        window.onload = () => { loadSidebar(); startLiveStream(); };
+        window.onload = () => { 
+            loadSidebar(); 
+            startLiveStream(); 
+            updateLiveUsers(); 
+        };
     </script>
 </body>
 </html>
